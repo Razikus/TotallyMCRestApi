@@ -64,8 +64,10 @@
         </executions>
         <configuration>
           <descriptorRefs>
-            <descriptorRef>all</descriptorRef>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
+            <finalName>${project.artifactId}-${version}-all</finalName>
+            <appendAssemblyId>false</appendAssemblyId>
         </configuration>
       </plugin>
     </plugins>
