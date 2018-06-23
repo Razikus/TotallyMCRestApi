@@ -64,7 +64,7 @@
         </executions>
         <configuration>
           <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
+            <descriptorRef>all</descriptorRef>
           </descriptorRefs>
         </configuration>
       </plugin>

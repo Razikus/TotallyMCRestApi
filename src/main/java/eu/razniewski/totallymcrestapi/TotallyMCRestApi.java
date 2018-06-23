@@ -25,6 +25,12 @@ public class TotallyMCRestApi extends JavaPlugin {
         spark.Spark.get("/players", (req, res) ->  {
             return getServer().getOnlinePlayers();
         });
+        
+        spark.Spark.get("/kick/:name", (req, res) ->  {
+            getServer().getPlayer(req.params(":name")).kickPlayer("LOL");
+            return true;
+        });
+        
         spark.Spark.get("/kick/:name", (req, res) ->  {
             getServer().getPlayer(req.params(":name")).kickPlayer("LOL");
             return true;
