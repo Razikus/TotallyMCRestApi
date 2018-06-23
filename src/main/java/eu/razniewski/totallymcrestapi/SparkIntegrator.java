@@ -36,6 +36,28 @@ public class SparkIntegrator {
         port(port);
         log.info("Changed port to: " + port);
     }
+    
+    boolean fromEntryPoint(Entrypoint entryPoint) {
+        switch(entryPoint.getRequestType()) {
+            case GET:
+                get(entryPoint.getRoute(), (rqst, rspns) -> {
+                    return entryPoint.getCallback().callWithParams(rqst.params());
+                });
+            case DELETE:
+                delete(entryPoint.getRoute(), (rqst, rspns) -> {
+                    return entryPoint.getCallback().callWithParams(rqst.params());
+                });
+            case PUT:
+                put(entryPoint.getRoute(), (rqst, rspns) -> {
+                    return entryPoint.getCallback().callWithParams(rqst.params());
+                });
+            case POST:
+                post(entryPoint.getRoute(), (rqst, rspns) -> {
+                    return entryPoint.getCallback().callWithParams(rqst.params());
+                });
+        }
+        return true;
+    }
 
     void configureFromConfig(TotallyMCRestApiConfiguration configuration) {
         setPort(configuration.getInt(DefaultConfigurationEntry.PORT));
