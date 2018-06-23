@@ -5,7 +5,9 @@
  */
 package eu.razniewski.totallymcrestapi;
 
+import java.util.logging.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -14,28 +16,22 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class TotallyMCRestApi extends JavaPlugin {
 
+    private final static String pluginName = "TotallyMCRestApi";
+    
+    private TotallyMCRestApiConfiguration configuration;
+    private SparkIntegrator integrator;
+    
+    private Logger log;
     @Override
     public void onEnable() {
-        getLogger().info("TotallyMC loading...");
-        spark.Spark.get("/playersOnline", (req, res) -> getServer().getOnlinePlayers().size());
-        spark.Spark.get("/bc/:text", (req, res) ->  {
-            getServer().broadcastMessage(req.params(":text"));
-            return true;
-        });
-        spark.Spark.get("/players", (req, res) ->  {
-            return getServer().getOnlinePlayers();
-        });
-        
-        spark.Spark.get("/kick/:name", (req, res) ->  {
-            getServer().getPlayer(req.params(":name")).kickPlayer("LOL");
-            return true;
-        });
-        
-        spark.Spark.get("/kick/:name", (req, res) ->  {
-            getServer().getPlayer(req.params(":name")).kickPlayer("LOL");
-            return true;
-        });
-        //Bukkit.getScheduler().runTaskAsynchronously(this, new ServerTask());
+        log = getLogger();
+        log.info("TotallyMC loading...");
+        configuration = new TotallyMCRestApiConfiguration(getConfig(), this);
+        configuration.registerDefaults();
+        configuration.saveDefaultConfigIfNotExist();
+        configuration.saveDefaultEntryPoints();
+        integrator = SparkIntegrator.getInstance();
+        integrator.configureFromConfig(configuration);
     }
 
     @Override
@@ -44,6 +40,14 @@ public class TotallyMCRestApi extends JavaPlugin {
         getLogger().info("TotallyMC DISABLED!");
     }
     
+    public static TotallyMCRestApi getInstance() {
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(pluginName);
+        if (plugin == null || !(plugin instanceof TotallyMCRestApi)) {
+            throw new RuntimeException(pluginName + " not found");
+        }
+ 
+        return ((TotallyMCRestApi) plugin);
+    }
     
     
 }

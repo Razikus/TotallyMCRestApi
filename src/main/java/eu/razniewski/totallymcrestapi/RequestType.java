@@ -5,11 +5,12 @@
  */
 package eu.razniewski.totallymcrestapi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author adamr
  */
-
-public class EntryPoint {
-    
+public enum RequestType implements Serializable {
+    GET, PUT, DELETE, POST;
 }
