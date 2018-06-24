@@ -5,6 +5,7 @@
  */
 package eu.razniewski.totallymcrestapi.commandCallback;
 
+import com.google.gson.Gson;
 import eu.razniewski.totallymcrestapi.TotallyMCRestApi;
 import eu.razniewski.totallymcrestapi.Utils;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class OutputConfigCommandCallback extends CommandCallback {
     private String command;
     private Map<String, String> additionalParams;
     
-    private transient ArrayList<String> returnFromCommand = new ArrayList<>();;
+    private transient ArrayList<String> returnFromCommand = new ArrayList<>();
+    private transient Gson gsonInstance = null;
 
     public OutputConfigCommandCallback(String command, Map<String, String> additionalParams) {
         this.command = command;
@@ -60,12 +62,19 @@ public class OutputConfigCommandCallback extends CommandCallback {
             e.printStackTrace();
         }
     
-        return Utils.getStandardGsonInstance().toJson(returnFromCommand);
+        return getGsonInstance().toJson(returnFromCommand);
         
     }
 
     public void setReturnFromCommand(String returnFromCommand) {
         this.returnFromCommand.add(returnFromCommand);
+    }
+
+    private Gson getGsonInstance() {
+        if(gsonInstance == null) {
+            gsonInstance = Utils.getStandardGsonInstance();
+        }
+        return gsonInstance;
     }
     
     

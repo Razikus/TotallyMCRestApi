@@ -5,7 +5,9 @@
  */
 package eu.razniewski.totallymcrestapi.commandCallback;
 
+import com.google.gson.Gson;
 import eu.razniewski.totallymcrestapi.TotallyMCRestApi;
+import eu.razniewski.totallymcrestapi.Utils;
 import java.util.Map;
 
 /**
@@ -17,6 +19,14 @@ public class VoidConfigCommandCallback extends CommandCallback {
     private String command;
     private Map<String, String> additionalParams;
 
+    private Gson gsonInstance;
+    
+    private Gson getGsonInstance() {
+        if(gsonInstance == null) {
+            gsonInstance = Utils.getStandardGsonInstance();
+        }
+        return gsonInstance;
+    }
     public VoidConfigCommandCallback(String command, Map<String, String> additionalParams) {
         this.command = command;
         this.additionalParams = additionalParams;
@@ -38,7 +48,7 @@ public class VoidConfigCommandCallback extends CommandCallback {
         String toExecute = parseCommandWithInternalParams(getCommand());
         toExecute = parseCommandWithRequestParams(params, toExecute);
         TotallyMCRestApi instance = TotallyMCRestApi.getInstance();
-        return instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute);
+        return getGsonInstance().toJson(instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute));
     }
     
 }
