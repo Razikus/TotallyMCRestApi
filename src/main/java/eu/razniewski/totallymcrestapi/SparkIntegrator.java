@@ -43,24 +43,56 @@ public class SparkIntegrator {
         switch(entryPoint.getRequestType()) {
             case GET:
                 get(entryPoint.getRoute(), (rqst, rspns) -> {
+                    if(entryPoint.isTokenEnabled()) {
+                        if(!rqst.queryParams().contains("token")) {
+                            return "UNAUTHORIZED";
+                        }
+                        if(!entryPoint.isTokenOnList(rqst.queryParams("token"))) {
+                            return "UNAUTHORIZED";
+                        }
+                    }
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case DELETE:
                 delete(entryPoint.getRoute(), (rqst, rspns) -> {
+                    if(entryPoint.isTokenEnabled()) {
+                        if(!rqst.queryParams().contains("token")) {
+                            return "UNAUTHORIZED";
+                        }
+                        if(!entryPoint.isTokenOnList(rqst.queryParams("token"))) {
+                            return "UNAUTHORIZED";
+                        }
+                    }
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case PUT:
                 put(entryPoint.getRoute(), (rqst, rspns) -> {
+                    if(entryPoint.isTokenEnabled()) {
+                        if(!rqst.queryParams().contains("token")) {
+                            return "UNAUTHORIZED";
+                        }
+                        if(!entryPoint.isTokenOnList(rqst.queryParams("token"))) {
+                            return "UNAUTHORIZED";
+                        }
+                    }
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case POST:
                 post(entryPoint.getRoute(), (rqst, rspns) -> {
+                    if(entryPoint.isTokenEnabled()) {
+                        if(!rqst.queryParams().contains("token")) {
+                            return "UNAUTHORIZED";
+                        }
+                        if(!entryPoint.isTokenOnList(rqst.queryParams("token"))) {
+                            return "UNAUTHORIZED";
+                        }
+                    }
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
