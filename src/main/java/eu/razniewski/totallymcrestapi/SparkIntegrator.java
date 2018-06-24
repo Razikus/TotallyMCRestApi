@@ -27,7 +27,7 @@ public class SparkIntegrator {
     }
 
     public SparkIntegrator() {
-        log = Bukkit.getLogger();
+        log = TotallyMCRestApi.getInstance().getLogger();
         gson = Utils.getStandardGsonInstance();
     }
     
@@ -39,22 +39,30 @@ public class SparkIntegrator {
     }
     
     boolean fromEntryPoint(Entrypoint entryPoint) {
+        log.info("Adding entrypoint: " + entryPoint.getRoute() + " " + entryPoint.getRequestType().name() + " " + entryPoint.getCallback().getClass().getCanonicalName());
         switch(entryPoint.getRequestType()) {
             case GET:
                 get(entryPoint.getRoute(), (rqst, rspns) -> {
-                    Object ret = entryPoint.getCallback().callWithParams(rqst.params());
-                    return ret;
+                    TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
+                    rspns.type("application/json");
+                    return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case DELETE:
                 delete(entryPoint.getRoute(), (rqst, rspns) -> {
+                    TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
+                    rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case PUT:
                 put(entryPoint.getRoute(), (rqst, rspns) -> {
+                    TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
+                    rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
             case POST:
                 post(entryPoint.getRoute(), (rqst, rspns) -> {
+                    TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
+                    rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
                 });
         }

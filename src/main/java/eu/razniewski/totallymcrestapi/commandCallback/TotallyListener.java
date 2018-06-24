@@ -15,17 +15,7 @@ import org.bukkit.event.server.ServerCommandEvent;
  *
  * @author adamr
  */
-public class TotallyCommandListener implements Listener {
+public class TotallyListener implements Listener {
     
-    @EventHandler
-    public void onCommand(ServerCommandEvent event) {
-        Bukkit.getLogger().info(event.getCommand());
-    }
-    
-    @EventHandler
-    public void onMsg(AsyncPlayerChatEvent event) {
-        Bukkit.getLogger().info(event.getMessage());
-        
-    }
     
 }

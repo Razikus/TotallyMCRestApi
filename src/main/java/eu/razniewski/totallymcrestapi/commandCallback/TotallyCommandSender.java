@@ -33,8 +33,7 @@ public class TotallyCommandSender implements ConsoleCommandSender, CommandSender
 
     @Override
     public void sendMessage(String string) {
-        Bukkit.getLogger().info("Sending " + string);
-        sender.sendMessage(string);
+        //sender.sendMessage(string);
         channel.setReturnFromCommand(string);
     }
 

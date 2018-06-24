@@ -36,10 +36,10 @@ public abstract class CommandCallback implements TotallyCallback, Serializable {
     }
     
     private String getFormattedStandardKey(String from) {
-        return "{%" + from + "%}";
+        return "\\{%" + from + "%\\}";
     }
     
     private String getFormattedExternalKey(String from) {
-        return "{" + from + "}";
+        return "\\{" + from + "\\}";
     }
 }

@@ -30,7 +30,7 @@ public class TotallyMCRestApiConfiguration {
 
 
     TotallyMCRestApiConfiguration(FileConfiguration config, TotallyMCRestApi aThis) {
-        log = Bukkit.getLogger();
+        log = TotallyMCRestApi.getInstance().getLogger();
         this.config = config;
         this.context = aThis;
     }
