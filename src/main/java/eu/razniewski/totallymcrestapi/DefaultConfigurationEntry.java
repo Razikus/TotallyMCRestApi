@@ -6,6 +6,7 @@
 package eu.razniewski.totallymcrestapi;
 
 import eu.razniewski.totallymcrestapi.commandCallback.OutputConfigCommandCallback;
+import eu.razniewski.totallymcrestapi.defaultCallbacks.PlayersNicknamesCallback;
 import eu.razniewski.totallymcrestapi.defaultCallbacks.PlayersOnlineCallback;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,10 +24,16 @@ public enum DefaultConfigurationEntry {
     CALLS("calls.json");
 
     public static ArrayList<Entrypoint> getDefaultCallbacks() {
+        ArrayList<String> tokens = new ArrayList<>();
+        tokens.add("testToken");
+        
         ArrayList<Entrypoint> entries = new ArrayList<>();
-        Entrypoint playersOnlineCallback = new Entrypoint(new PlayersOnlineCallback(), "/onlinePlayers", RequestType.GET, true, new ArrayList<>(Arrays.asList("tokentest")));
+        Entrypoint playersOnlineCallback = new Entrypoint(new PlayersOnlineCallback(), "/onlinePlayers", RequestType.GET, true, tokens);
+        Entrypoint playersNickname = new Entrypoint(new PlayersNicknamesCallback(), "/onlinePlayersNickname", RequestType.GET, true, tokens);
+        
         Entrypoint commandCallback = new Entrypoint(new OutputConfigCommandCallback("?", new HashMap<>()), "/help", RequestType.GET);
         entries.add(playersOnlineCallback);
+        entries.add(playersNickname);
         entries.add(commandCallback);
         return entries;
     }

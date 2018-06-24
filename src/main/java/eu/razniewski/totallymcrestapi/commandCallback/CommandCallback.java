@@ -5,7 +5,9 @@
  */
 package eu.razniewski.totallymcrestapi.commandCallback;
 
+import com.google.gson.Gson;
 import eu.razniewski.totallymcrestapi.TotallyCallback;
+import eu.razniewski.totallymcrestapi.Utils;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,15 @@ public abstract class CommandCallback implements TotallyCallback, Serializable {
     
     public abstract String getCommand();
     public abstract Map<String, String> getAdditionalParams();
+    
+    private Gson gsonInstance;
+    
+    public Gson getGsonInstance() {
+        if(gsonInstance == null) {
+            gsonInstance = Utils.getStandardGsonInstance();
+        }
+        return gsonInstance;
+    }
     
     public String parseCommandWithInternalParams(String cmd) {
         String ret = cmd;

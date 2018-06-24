@@ -5,7 +5,9 @@
  */
 package eu.razniewski.totallymcrestapi.defaultCallbacks;
 
+import com.google.gson.Gson;
 import eu.razniewski.totallymcrestapi.TotallyCallback;
+import eu.razniewski.totallymcrestapi.Utils;
 import java.io.Serializable;
 
 /**
@@ -14,4 +16,12 @@ import java.io.Serializable;
  */
 public abstract class JavaCallback implements TotallyCallback, Serializable{
     
+    private Gson gsonInstance;
+    
+    public Gson getGsonInstance() {
+        if(gsonInstance == null) {
+            gsonInstance = Utils.getStandardGsonInstance();
+        }
+        return gsonInstance;
+    }
 }

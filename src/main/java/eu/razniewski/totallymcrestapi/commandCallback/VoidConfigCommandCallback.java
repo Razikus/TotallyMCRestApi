@@ -18,15 +18,7 @@ public class VoidConfigCommandCallback extends CommandCallback {
 
     private String command;
     private Map<String, String> additionalParams;
-
-    private Gson gsonInstance;
     
-    private Gson getGsonInstance() {
-        if(gsonInstance == null) {
-            gsonInstance = Utils.getStandardGsonInstance();
-        }
-        return gsonInstance;
-    }
     public VoidConfigCommandCallback(String command, Map<String, String> additionalParams) {
         this.command = command;
         this.additionalParams = additionalParams;

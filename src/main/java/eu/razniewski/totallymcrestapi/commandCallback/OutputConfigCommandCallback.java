@@ -30,7 +30,6 @@ public class OutputConfigCommandCallback extends CommandCallback {
     private Map<String, String> additionalParams;
     
     private transient ArrayList<String> returnFromCommand = new ArrayList<>();
-    private transient Gson gsonInstance = null;
 
     public OutputConfigCommandCallback(String command, Map<String, String> additionalParams) {
         this.command = command;
@@ -69,14 +68,5 @@ public class OutputConfigCommandCallback extends CommandCallback {
     public void setReturnFromCommand(String returnFromCommand) {
         this.returnFromCommand.add(returnFromCommand);
     }
-
-    private Gson getGsonInstance() {
-        if(gsonInstance == null) {
-            gsonInstance = Utils.getStandardGsonInstance();
-        }
-        return gsonInstance;
-    }
-    
-    
     
 }
