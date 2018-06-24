@@ -5,8 +5,11 @@
  */
 package eu.razniewski.totallymcrestapi;
 
+import eu.razniewski.totallymcrestapi.commandCallback.OutputConfigCommandCallback;
+import eu.razniewski.totallymcrestapi.defaultCallbacks.PlayersOnlineCallback;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.bukkit.Bukkit;
 
@@ -21,7 +24,9 @@ public enum DefaultConfigurationEntry {
     public static ArrayList<Entrypoint> getDefaultCallbacks() {
         ArrayList<Entrypoint> entries = new ArrayList<>();
         Entrypoint playersOnlineCallback = new Entrypoint(new PlayersOnlineCallback(), "/onlinePlayers", RequestType.GET);
+        Entrypoint commandCallback = new Entrypoint(new OutputConfigCommandCallback("?", new HashMap<>()), "/help", RequestType.GET);
         entries.add(playersOnlineCallback);
+        entries.add(commandCallback);
         return entries;
     }
     

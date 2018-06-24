@@ -5,6 +5,7 @@
  */
 package eu.razniewski.totallymcrestapi;
 
+import eu.razniewski.totallymcrestapi.commandCallback.TotallyCommandListener;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -26,6 +27,7 @@ public class TotallyMCRestApi extends JavaPlugin {
     public void onEnable() {
         log = getLogger();
         log.info("TotallyMC loading...");
+        getServer().getPluginManager().registerEvents(new TotallyCommandListener(), this);
         configuration = new TotallyMCRestApiConfiguration(getConfig(), this);
         configuration.registerDefaults();
         configuration.saveDefaultConfigIfNotExist();

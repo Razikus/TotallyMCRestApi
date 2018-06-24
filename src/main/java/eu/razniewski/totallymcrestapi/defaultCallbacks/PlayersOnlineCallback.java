@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.razniewski.totallymcrestapi;
+package eu.razniewski.totallymcrestapi.defaultCallbacks;
 
+import eu.razniewski.totallymcrestapi.TotallyCallback;
+import eu.razniewski.totallymcrestapi.TotallyMCRestApi;
+import eu.razniewski.totallymcrestapi.commandCallback.TotallyCommandSender;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -12,10 +15,8 @@ import java.util.Map;
  *
  * @author adamr
  */
-public class PlayersOnlineCallback implements TotallyCallback, Serializable {
+public class PlayersOnlineCallback extends JavaCallback implements TotallyCallback, Serializable {
 
-    private String className = this.getClass().getCanonicalName();
-    
     @Override
     public Object callWithParams(Map<String, String> params) {
         return TotallyMCRestApi.getInstance().getServer().getOnlinePlayers().size();

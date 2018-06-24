@@ -5,6 +5,7 @@
  */
 package eu.razniewski.totallymcrestapi;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import static spark.Spark.*;
@@ -27,7 +28,7 @@ public class SparkIntegrator {
 
     public SparkIntegrator() {
         log = Bukkit.getLogger();
-        gson = new Gson();
+        gson = Utils.getStandardGsonInstance();
     }
     
     
@@ -41,7 +42,8 @@ public class SparkIntegrator {
         switch(entryPoint.getRequestType()) {
             case GET:
                 get(entryPoint.getRoute(), (rqst, rspns) -> {
-                    return entryPoint.getCallback().callWithParams(rqst.params());
+                    Object ret = entryPoint.getCallback().callWithParams(rqst.params());
+                    return ret;
                 });
             case DELETE:
                 delete(entryPoint.getRoute(), (rqst, rspns) -> {
@@ -60,7 +62,11 @@ public class SparkIntegrator {
     }
 
     void configureFromConfig(TotallyMCRestApiConfiguration configuration) {
+        
         setPort(configuration.getInt(DefaultConfigurationEntry.PORT));
+        for(Entrypoint entry: configuration.deserializeEntrypoints()) {
+            fromEntryPoint(entry);
+        }
     }
     
     
