@@ -39,6 +39,9 @@ public class GroovyCallback implements Serializable, TotallyCallback{
             } catch (IllegalAccessException ex) {
                 TotallyMCRestApi.getInstance().getLogger().info("Cannot instance groovy class. It is implements TotallyCallback and have public constructor with no parameters? " + ex.getMessage());
             }
+            if(groovyProxyInstance == null) {
+                groovyProxyInstance = new BadGroovyCallback();
+            }
         } 
         return groovyProxyInstance;
     }
