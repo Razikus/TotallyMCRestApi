@@ -17,6 +17,60 @@ Just copy latest release to your plugins folder.
 
 
 # Configuration
+config.yml
+```
+  port: 8888
+  calls: calls.json
+```
+
+calls.json
+```
+  [
+    {
+      "callback": {
+        # Points to class that will be used. Some of are build-in, some of are generic. List are included in file.
+        "CLASSNAME": "eu.razniewski.totallymcrestapi.defaultCallbacks.PlayersOnlineCallback",
+        "DATA": {}
+      },
+      # Route to endpoint, so it will be accessible via IP:PORT/route
+      "route": "/onlinePlayers",
+      # Possibilities - GET, DELETE, PUT, POST, 
+      "requestType": "GET",
+      # If true - only endpoints with ?token=testToken will be avalaible so for example localhost:8888/onlinePlayers?token=testToken
+      "tokenEnabled": true,
+      # list of tokens that will be good for this endpoint
+      "tokens": [
+        "testToken"
+      ]
+    },
+    {
+      "callback": {
+        "CLASSNAME": "eu.razniewski.totallymcrestapi.defaultCallbacks.PlayersNicknamesCallback",
+        "DATA": {}
+      },
+      "route": "/onlinePlayersNickname",
+      "requestType": "GET",
+      "tokenEnabled": true,
+      "tokens": [
+        "testToken"
+      ]
+    },
+    {
+      "callback": {
+        "CLASSNAME": "eu.razniewski.totallymcrestapi.commandCallback.OutputConfigCommandCallback",
+        "DATA": {
+          # Additional data of that command. {:text} for parameter from request, {%text%} for parameter from additionalParams
+          "command": "? {:name}",
+          "additionalParams": {}
+        }
+      },
+      "route": "/help/:name",
+      "requestType": "GET",
+      "tokenEnabled": false,
+      "tokens": []
+    }
+  ]
+```
 
 # Security
 
