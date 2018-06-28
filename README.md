@@ -19,7 +19,9 @@ Just copy latest release to your plugins folder.
 # Configuration
 config.yml
 ```
+  # Port where server will be listening to
   port: 8888
+  # file with endpoints configuration
   calls: calls.json
 ```
 
