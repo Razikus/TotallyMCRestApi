@@ -52,7 +52,7 @@ public class GroovyCallback implements Serializable, TotallyCallback{
     }
 
     private void loadInstance() throws CompilationFailedException, IOException, InstantiationException, IllegalAccessException {
-        GroovyClassLoader loader = new GroovyClassLoader();
+        GroovyClassLoader loader = new GroovyClassLoader(TotallyMCRestApi.class.getClassLoader());
         Class example = loader.parseClass(new File(fileName));
         TotallyCallback callback = (TotallyCallback) example.newInstance();
         groovyProxyInstance = callback;
