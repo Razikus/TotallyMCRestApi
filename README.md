@@ -70,6 +70,18 @@ calls.json
       "requestType": "GET",
       "tokenEnabled": false,
       "tokens": []
+    },
+    {
+      "callback": {
+        "CLASSNAME": "eu.razniewski.totallymcrestapi.groovyCallbacks.GroovyCallback",
+        "DATA": {
+          "fileName": "plugins/TotallyMCRestApi/test.groovy"
+        }
+      },
+      "route": "/test",
+      "requestType": "GET",
+      "tokenEnabled": false,
+      "tokens": []
     }
   ]
 ```
