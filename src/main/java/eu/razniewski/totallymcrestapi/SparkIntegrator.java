@@ -54,7 +54,7 @@ public class SparkIntegrator {
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
-                });
+                }, new JSONTransformer());
             case DELETE:
                 delete(entryPoint.getRoute(), (rqst, rspns) -> {
                     if(entryPoint.isTokenEnabled()) {
@@ -68,7 +68,7 @@ public class SparkIntegrator {
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
-                });
+                }, new JSONTransformer());
             case PUT:
                 put(entryPoint.getRoute(), (rqst, rspns) -> {
                     if(entryPoint.isTokenEnabled()) {
@@ -82,7 +82,7 @@ public class SparkIntegrator {
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
-                });
+                }, new JSONTransformer());
             case POST:
                 post(entryPoint.getRoute(), (rqst, rspns) -> {
                     if(entryPoint.isTokenEnabled()) {
@@ -96,7 +96,7 @@ public class SparkIntegrator {
                     TotallyMCRestApi.getInstance().getLogger().info(entryPoint.getRequestType() + " Callback " + entryPoint.getRoute() + " executed from " + rqst.ip());
                     rspns.type("application/json");
                     return entryPoint.getCallback().callWithParams(rqst.params());
-                });
+                }, new JSONTransformer());
         }
         return true;
     }

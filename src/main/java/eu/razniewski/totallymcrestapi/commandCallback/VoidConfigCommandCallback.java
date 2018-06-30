@@ -40,7 +40,7 @@ public class VoidConfigCommandCallback extends CommandCallback {
         String toExecute = parseCommandWithInternalParams(getCommand());
         toExecute = parseCommandWithRequestParams(params, toExecute);
         TotallyMCRestApi instance = TotallyMCRestApi.getInstance();
-        return getGsonInstance().toJson(instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute));
+        return instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute);
     }
     
 }

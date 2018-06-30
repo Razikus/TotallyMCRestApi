@@ -61,7 +61,7 @@ public class OutputConfigCommandCallback extends CommandCallback {
             e.printStackTrace();
         }
     
-        return getGsonInstance().toJson(returnFromCommand);
+        return returnFromCommand;
         
     }
 

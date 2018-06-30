@@ -25,7 +25,7 @@ public class PlayersNicknamesCallback extends JavaCallback implements TotallyCal
         for(Player p: TotallyMCRestApi.getInstance().getServer().getOnlinePlayers()) {
             players.add(p.getName());
         }
-        return getGsonInstance().toJson(players);
+        return players;
     }
     
 }
