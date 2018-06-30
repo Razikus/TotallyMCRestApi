@@ -86,4 +86,4 @@ calls.json
 # To do
 - [ ] Reloading plugin
 - [ ] More default java endpoints
-- [ ] Groovy callbacks
+- [x] Groovy callbacks
