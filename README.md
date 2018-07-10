@@ -94,6 +94,10 @@ Just buy me a coffee! It's very motivating :)
 
 https://www.buymeacoffee.com/razikus
 
+[<img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png">](https://www.buymeacoffee.com/razikus)
+
+
+
 # Building
 [![Build Status](https://travis-ci.org/Razikus/TotallyMCRestApi.svg?branch=master)](https://travis-ci.org/Razikus/TotallyMCRestApi)
 
