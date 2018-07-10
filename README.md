@@ -90,6 +90,10 @@ calls.json
 
 # Donate
 
+Just buy me a coffee! It's very motivating :)
+
+https://www.buymeacoffee.com/razikus
+
 # Building
 [![Build Status](https://travis-ci.org/Razikus/TotallyMCRestApi.svg?branch=master)](https://travis-ci.org/Razikus/TotallyMCRestApi)
 
