@@ -40,7 +40,10 @@ public class VoidConfigCommandCallback extends CommandCallback {
         String toExecute = parseCommandWithInternalParams(getCommand());
         toExecute = parseCommandWithRequestParams(params, toExecute);
         TotallyMCRestApi instance = TotallyMCRestApi.getInstance();
-        return instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute);
+        org.spigotmc.AsyncCatcher.enabled = false;
+        Object ret = instance.getServer().dispatchCommand(instance.getServer().getConsoleSender(), toExecute);
+        org.spigotmc.AsyncCatcher.enabled = true;
+        return ret;
     }
     
 }

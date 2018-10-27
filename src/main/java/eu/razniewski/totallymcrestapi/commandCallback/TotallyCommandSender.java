@@ -25,15 +25,15 @@ import org.bukkit.plugin.Plugin;
  */
 public class TotallyCommandSender implements ConsoleCommandSender, CommandSender {
 
-    ConsoleCommandSender sender = TotallyMCRestApi.getInstance().getServer().getConsoleSender();
+    ConsoleCommandSender sender;
     private OutputConfigCommandCallback channel;
-    TotallyCommandSender(OutputConfigCommandCallback aThis) {
+    TotallyCommandSender(OutputConfigCommandCallback aThis, ConsoleCommandSender sender) {
         this.channel = aThis;
+        this.sender = sender;
     }
 
     @Override
     public void sendMessage(String string) {
-        //sender.sendMessage(string);
         channel.setReturnFromCommand(string);
     }
 

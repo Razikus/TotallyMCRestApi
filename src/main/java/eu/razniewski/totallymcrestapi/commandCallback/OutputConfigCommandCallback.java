@@ -19,6 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -53,10 +54,12 @@ public class OutputConfigCommandCallback extends CommandCallback {
             this.returnFromCommand = new ArrayList<>();
             String toExecute = parseCommandWithInternalParams(getCommand());
             toExecute = parseCommandWithRequestParams(params, toExecute);
+            final String fin = toExecute;
             TotallyMCRestApi instance = TotallyMCRestApi.getInstance();
-            TotallyCommandSender sender = new TotallyCommandSender(this);
-            
+            TotallyCommandSender sender = new TotallyCommandSender(this, instance.getServer().getConsoleSender());
+            org.spigotmc.AsyncCatcher.enabled = false;
             instance.getServer().dispatchCommand(sender, toExecute);
+            org.spigotmc.AsyncCatcher.enabled = true;
         } catch(Exception e) {
             e.printStackTrace();
         }
